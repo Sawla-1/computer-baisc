@@ -1,4 +1,4 @@
-﻿import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Icon } from './Icon.jsx'
 
 export function ContextMenu({ x, y, items, onClose }) {
@@ -51,7 +51,7 @@ export function ContextMenu({ x, y, items, onClose }) {
               item.onClick?.()
               onClose()
             }}
-            className={`focus-ring flex w-full items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-left text-[0.8125rem] transition disabled:opacity-35 ${
+            className={`focus-ring flex w-full items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-left text-base transition disabled:opacity-35 ${
               item.danger
                 ? 'text-rose-300 hover:bg-rose-500/15'
                 : 'text-slate-200 hover:bg-white/10'
@@ -59,7 +59,7 @@ export function ContextMenu({ x, y, items, onClose }) {
           >
             {item.icon ? <Icon name={item.icon} className="h-4 w-4 opacity-80" /> : null}
             <span className="flex-1">{item.label}</span>
-            {item.hint ? <span className="text-[0.625rem] text-slate-500">{item.hint}</span> : null}
+            {item.hint ? <span className="text-sm text-slate-500">{item.hint}</span> : null}
           </button>
         ),
       )}

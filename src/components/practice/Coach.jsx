@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Icon } from '../ui/Icon.jsx'
 
 export function Coach({ coach, hint, level, onShowMe, onNextHint, nextHintLabel }) {
@@ -12,7 +12,7 @@ export function Coach({ coach, hint, level, onShowMe, onNextHint, nextHintLabel 
       <button
         type="button"
         onClick={() => setDismissed(false)}
-        className="focus-ring fixed bottom-5 left-5 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-ink-900/90 px-3 py-2 text-xs font-semibold text-slate-200 shadow-xl backdrop-blur transition hover:border-neon-400/50"
+        className="focus-ring fixed bottom-5 left-5 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-ink-900/90 px-3 py-2 text-sm font-semibold text-slate-200 shadow-xl backdrop-blur transition hover:border-neon-400/50"
       >
         <Icon name="spark" className="h-4 w-4 text-mango-400" />
         Show the coach
@@ -27,12 +27,12 @@ export function Coach({ coach, hint, level, onShowMe, onNextHint, nextHintLabel 
           <Icon name="spark" className="h-4 w-4" />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-mango-400/80">
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-mango-400/80">
             Coach
           </p>
-          <p className="mt-0.5 text-sm leading-relaxed text-slate-100">{coach}</p>
+          <p className="mt-0.5 text-base leading-relaxed text-slate-100">{coach}</p>
           {hint ? (
-            <p className="mt-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-xs leading-relaxed text-slate-300 animate-float-in">
+            <p className="mt-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-sm leading-relaxed text-slate-300 animate-float-in">
               {hint}
             </p>
           ) : null}
@@ -41,7 +41,7 @@ export function Coach({ coach, hint, level, onShowMe, onNextHint, nextHintLabel 
               <button
                 type="button"
                 onClick={onNextHint}
-                className="focus-ring rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-[0.6875rem] font-semibold text-slate-200 transition hover:border-mango-400/50 hover:text-white"
+                className="focus-ring rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-sm font-semibold text-slate-200 transition hover:border-mango-400/50 hover:text-white"
               >
                 {nextHintLabel}
               </button>
@@ -49,7 +49,7 @@ export function Coach({ coach, hint, level, onShowMe, onNextHint, nextHintLabel 
               <button
                 type="button"
                 onClick={onShowMe}
-                className="focus-ring rounded-lg border border-neon-400/50 bg-neon-500/15 px-2.5 py-1.5 text-[0.6875rem] font-semibold text-neon-300 transition hover:bg-neon-500/25"
+                className="focus-ring rounded-lg border border-neon-400/50 bg-neon-500/15 px-2.5 py-1.5 text-sm font-semibold text-neon-300 transition hover:bg-neon-500/25"
               >
                 Show me where
               </button>
@@ -57,7 +57,7 @@ export function Coach({ coach, hint, level, onShowMe, onNextHint, nextHintLabel 
             <button
               type="button"
               onClick={() => setDismissed(true)}
-              className="focus-ring rounded-lg px-2 py-1.5 text-[0.6875rem] text-slate-500 transition hover:text-slate-300"
+              className="focus-ring rounded-lg px-2 py-1.5 text-sm text-slate-500 transition hover:text-slate-300"
             >
               Hide
             </button>

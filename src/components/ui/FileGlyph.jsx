@@ -1,4 +1,4 @@
-﻿export const KIND_STYLE = {
+export const KIND_STYLE = {
   folder: { bg: 'from-amber-400/30 to-amber-500/10', ring: 'ring-amber-400/40', text: 'text-amber-200', label: 'F' },
   text: { bg: 'from-slate-300/25 to-slate-500/10', ring: 'ring-slate-300/30', text: 'text-slate-200', label: 'TXT' },
   doc: { bg: 'from-blue-500/30 to-blue-700/10', ring: 'ring-blue-400/40', text: 'text-blue-200', label: 'DOC' },
@@ -43,7 +43,7 @@ export function FileGlyph({ kind, ext, className = 'h-11 w-11' }) {
     <div
       className={`flex h-11 w-11 flex-col items-center justify-center rounded-lg bg-gradient-to-br ${style.bg} ring-1 ${style.ring} ${style.text}`}
     >
-      <span className="text-[0.625rem] font-bold leading-none tracking-tight">{label}</span>
+      <span className="text-sm font-bold leading-none tracking-tight">{label}</span>
     </div>
   )
 }

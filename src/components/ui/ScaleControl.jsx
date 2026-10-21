@@ -16,10 +16,10 @@ export function ScaleControl() {
         aria-label="Make the text smaller"
         className="focus-ring flex h-7 w-7 items-center justify-center rounded-full text-slate-300 transition hover:bg-white/10 hover:text-white disabled:opacity-30"
       >
-        <span className="text-[0.8125rem] font-bold">A−</span>
+        <span className="text-base font-bold">A−</span>
       </button>
       <span
-        className="px-1 text-[0.625rem] font-semibold tabular-nums text-slate-500"
+        className="px-1 text-sm font-semibold tabular-nums text-slate-500"
         title="Current interface size"
       >
         {scale}
@@ -31,7 +31,7 @@ export function ScaleControl() {
         aria-label="Make the text bigger"
         className="focus-ring flex h-7 w-7 items-center justify-center rounded-full text-slate-300 transition hover:bg-white/10 hover:text-white disabled:opacity-30"
       >
-        <span className="text-[0.9375rem] font-bold">A+</span>
+        <span className="text-base font-bold">A+</span>
       </button>
     </div>
   )

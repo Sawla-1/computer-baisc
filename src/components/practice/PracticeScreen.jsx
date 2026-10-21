@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Explorer } from '../ui/Explorer.jsx'
 import { Icon } from '../ui/Icon.jsx'
 import { ToastStack } from '../ui/ToastStack.jsx'
@@ -54,7 +54,7 @@ export function PracticeScreen({ onExit, onBattle }) {
     toast({
       type: 'good',
       title: 'Mission complete',
-      body: `+${task.points} XP ยท streak ${streak + 1}`,
+      body: `+${task.points} XP · streak ${streak + 1}`,
     })
     setPhase('concept')
   }, [ctx, phase, task, toast, streak])
@@ -69,7 +69,7 @@ export function PracticeScreen({ onExit, onBattle }) {
       setMistakes((m) => m + 1)
       toast({
         type: 'hint',
-        title: 'Careful โ€” that was not the target',
+        title: 'Careful — that was not the target',
         body: goal,
       })
       return
@@ -159,31 +159,31 @@ export function PracticeScreen({ onExit, onBattle }) {
       <aside className="flex w-full shrink-0 flex-col gap-3 lg:w-[20rem] lg:overflow-y-auto lg:pr-1 scrollbar-slim">
         <div className="panel p-4">
           <div className="flex items-center justify-between">
-            <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-neon-400/80">
+            <span className="text-sm font-bold uppercase tracking-[0.16em] text-neon-400/80">
               Practice
             </span>
             <button
               type="button"
               onClick={onExit}
-              className="focus-ring rounded-lg px-2 py-1 text-[0.6875rem] text-slate-400 transition hover:text-white"
+              className="focus-ring rounded-lg px-2 py-1 text-sm text-slate-400 transition hover:text-white"
             >
               Exit
             </button>
           </div>
 
           <div className="mt-3 flex items-baseline justify-between">
-            <h2 className="text-lg font-semibold text-white">{mission.title}</h2>
-            <span className="text-xs font-semibold text-mango-400">+{mission.points} XP</span>
+            <h2 className="text-xl font-semibold text-white">{mission.title}</h2>
+            <span className="text-sm font-semibold text-mango-400">+{mission.points} XP</span>
           </div>
 
           <div className="mt-2 rounded-xl border border-white/10 bg-white/5 p-3">
-            <p className="text-[0.625rem] font-bold uppercase tracking-[0.14em] text-slate-500">
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-slate-500">
               Goal
             </p>
-            <p className="mt-1 text-sm leading-relaxed text-slate-100">{goal}</p>
+            <p className="mt-1 text-base leading-relaxed text-slate-100">{goal}</p>
           </div>
 
-          <div className="mt-3 flex items-center gap-4 text-xs text-slate-400">
+          <div className="mt-3 flex items-center gap-4 text-sm text-slate-400">
             <span className="inline-flex items-center gap-1.5">
               <Icon name="bolt" className="h-4 w-4 text-mango-400" />
               {xp} XP
@@ -207,11 +207,11 @@ export function PracticeScreen({ onExit, onBattle }) {
         />
 
         <div className="panel p-4">
-          <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-slate-500">
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">
             Concept in this mission
           </p>
-          <p className="mt-1.5 text-sm font-semibold text-grape-300">{mission.concept.name}</p>
-          <p className="mt-1 text-xs leading-relaxed text-slate-400">{mission.concept.body}</p>
+          <p className="mt-1.5 text-base font-semibold text-grape-300">{mission.concept.name}</p>
+          <p className="mt-1 text-sm leading-relaxed text-slate-400">{mission.concept.body}</p>
         </div>
       </aside>
 
@@ -244,7 +244,7 @@ export function PracticeScreen({ onExit, onBattle }) {
 function MissionMap({ total, index, solved, onPick }) {
   return (
     <div className="panel p-4">
-      <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-slate-500">
+      <p className="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">
         Learning path
       </p>
       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -257,7 +257,7 @@ function MissionMap({ total, index, solved, onPick }) {
               type="button"
               onClick={() => onPick(i)}
               title={MISSIONS[i].title}
-              className={`focus-ring flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition ${
+              className={`focus-ring flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold transition ${
                 isCurrent
                   ? 'bg-neon-500/25 text-neon-300 ring-1 ring-neon-400/70'
                   : isDone
@@ -270,7 +270,7 @@ function MissionMap({ total, index, solved, onPick }) {
           )
         })}
       </div>
-      <p className="mt-2.5 text-[0.6875rem] leading-relaxed text-slate-500">
+      <p className="mt-2.5 text-sm leading-relaxed text-slate-500">
         Every mission teaches one skill. Tap a completed one to replay it.
       </p>
     </div>
@@ -286,16 +286,16 @@ function ConceptCard({ mission, xp, isLast, onNext }) {
             <Icon name="check" className="h-6 w-6" />
           </span>
           <div>
-            <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-neon-400/80">
-              Mission complete ยท +{xp} XP
+            <p className="text-sm font-bold uppercase tracking-[0.16em] text-neon-400/80">
+              Mission complete · +{xp} XP
             </p>
             <h3 className="text-xl font-semibold text-white">{mission.title}</h3>
           </div>
         </div>
 
         <div className="mt-4 rounded-xl border border-grape-400/25 bg-grape-500/10 p-4">
-          <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-grape-300/80">
-            What you learned ยท {mission.concept.name}
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-grape-300/80">
+            What you learned · {mission.concept.name}
           </p>
           <p className="mt-1.5 text-sm leading-relaxed text-slate-200">{mission.concept.body}</p>
         </div>
@@ -330,7 +330,7 @@ function SummaryCard({ xp, solved, mistakes, hints, onExit, onBattle, onRepeat }
           <Stat label="Missions" value={`${solved}/13`} tone="text-neon-400" />
           <Stat label="Slips" value={mistakes} tone="text-rose-300" />
         </div>
-        <p className="mt-2 text-center text-[0.6875rem] text-slate-500">
+        <p className="mt-2 text-center text-sm text-slate-500">
           {hints} hint{hints === 1 ? '' : 's'} used
         </p>
 
@@ -369,7 +369,7 @@ function Stat({ label, value, tone }) {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 py-3">
       <p className={`text-xl font-bold ${tone}`}>{value}</p>
-      <p className="text-[0.625rem] uppercase tracking-wider text-slate-500">{label}</p>
+      <p className="text-sm uppercase tracking-wider text-slate-500">{label}</p>
     </div>
   )
 }
