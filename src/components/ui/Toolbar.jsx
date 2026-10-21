@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import { Icon } from './Icon.jsx'
 import { Tip } from './Tooltip.jsx'
 import { SORTS } from '../../game/fs.js'
@@ -23,7 +23,7 @@ function ToolButton({ icon, label, hint, onClick, disabled, beacon, tone = 'defa
           beacon ? 'animate-ping-ring ring-2 ring-neon-400' : ''
         }`}
       >
-        <Icon name={icon} className="h-[18px] w-[18px]" />
+        <Icon name={icon} className="h-[1.125rem] w-[1.125rem]" />
       </button>
     </Tip>
   )
@@ -178,7 +178,7 @@ export function Toolbar({ state, on, beaconTool }) {
             className="focus-ring flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-200 transition hover:bg-white/10"
             aria-label="Toggle view"
           >
-            <Icon name={view === 'grid' ? 'list' : 'grid'} className="h-[18px] w-[18px]" />
+            <Icon name={view === 'grid' ? 'list' : 'grid'} className="h-[1.125rem] w-[1.125rem]" />
           </button>
         </Tip>
 
@@ -193,7 +193,7 @@ export function Toolbar({ state, on, beaconTool }) {
           <input
             value={searchQuery}
             onChange={(e) => on.search(e.target.value)}
-            placeholder="Search all files…"
+            placeholder="Search all filesโ€ฆ"
             className="w-full bg-transparent text-sm text-white placeholder:text-slate-500 focus:outline-none"
           />
           {searchQuery ? (

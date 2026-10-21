@@ -3,6 +3,7 @@ import { Home } from './components/Home.jsx'
 import { PracticeScreen } from './components/practice/PracticeScreen.jsx'
 import { BattleScreen } from './components/battle/BattleScreen.jsx'
 import { ErrorBoundary } from './components/ui/ErrorBoundary.jsx'
+import { ScaleControl } from './components/ui/ScaleControl.jsx'
 
 export default function App() {
   const [screen, setScreen] = useState('home') // home | practice | battle
@@ -26,6 +27,7 @@ export default function App() {
           />
         ) : null}
       </ErrorBoundary>
+      <ScaleControl />
     </div>
   )
 }

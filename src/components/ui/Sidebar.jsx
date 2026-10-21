@@ -1,4 +1,4 @@
-import { Icon } from './Icon.jsx'
+﻿import { Icon } from './Icon.jsx'
 import { QUICK_ACCESS } from '../../game/seed.js'
 import { TRASH_ID, ROOT_ID, childrenOf } from '../../game/fs.js'
 
@@ -17,7 +17,7 @@ function Row({ active, onClick, onDropItem, onDragOver, beacon, children, count 
     >
       {children}
       {count != null ? (
-        <span className="ml-auto rounded-full bg-white/10 px-1.5 py-0.5 text-[10px] font-semibold text-slate-300">
+        <span className="ml-auto rounded-full bg-white/10 px-1.5 py-0.5 text-[0.625rem] font-semibold text-slate-300">
           {count}
         </span>
       ) : null}
@@ -40,7 +40,7 @@ export function Sidebar({ nodes, currentFolderId, onNavigate, onDropItem, beacon
 
   return (
     <aside className="flex w-36 shrink-0 flex-col gap-1 overflow-y-auto border-r border-white/5 bg-ink-900/40 p-2 scrollbar-slim md:w-52">
-      <p className="px-2.5 pb-1 pt-2 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+      <p className="px-2.5 pb-1 pt-2 text-[0.625rem] font-bold uppercase tracking-[0.14em] text-slate-500">
         Quick access
       </p>
       <Row
@@ -66,7 +66,7 @@ export function Sidebar({ nodes, currentFolderId, onNavigate, onDropItem, beacon
         </Row>
       ))}
 
-      <p className="px-2.5 pb-1 pt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+      <p className="px-2.5 pb-1 pt-4 text-[0.625rem] font-bold uppercase tracking-[0.14em] text-slate-500">
         System
       </p>
       <Row

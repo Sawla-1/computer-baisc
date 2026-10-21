@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+﻿import { useEffect, useMemo, useRef, useState } from 'react'
 import { Explorer } from '../ui/Explorer.jsx'
 import { Icon } from '../ui/Icon.jsx'
 import { ToastStack } from '../ui/ToastStack.jsx'
@@ -149,7 +149,7 @@ export function BattleScreen({ onExit, onPractice }) {
       toast({
         type: 'bad',
         title: 'That was the wrong file',
-        body: `−${Math.abs(SCORE.mistake)} points. Read the objective again.`,
+        body: `โ’${Math.abs(SCORE.mistake)} points. Read the objective again.`,
       })
     }
   }, [state.lastEvent, phase, toast])
@@ -166,7 +166,7 @@ export function BattleScreen({ onExit, onPractice }) {
       toast({
         type: 'hint',
         title: 'Dead heat!',
-        body: 'Sudden death: first to create the “Final” folder wins.',
+        body: 'Sudden death: first to create the โ€Finalโ€ folder wins.',
       })
       return
     }
@@ -215,7 +215,7 @@ export function BattleScreen({ onExit, onPractice }) {
             <Icon name="bolt" className="h-5 w-5" />
           </span>
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
+            <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-slate-500">
               You
             </p>
             <p className="text-xl font-bold text-white">{playerScore}</p>
@@ -226,14 +226,14 @@ export function BattleScreen({ onExit, onPractice }) {
           <p className={`font-mono text-3xl font-bold tabular-nums ${low ? 'text-rose-400 animate-pulse-soft' : 'text-white'}`}>
             {minutes}:{seconds}
           </p>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <p className="text-[0.625rem] uppercase tracking-[0.18em] text-slate-500">
             {phase === 'tiebreak' ? 'sudden death' : 'time left'}
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="text-right">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
+            <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-slate-500">
               Archivist
             </p>
             <p className="text-xl font-bold text-white">{aiScore}</p>
@@ -246,7 +246,7 @@ export function BattleScreen({ onExit, onPractice }) {
         <button
           type="button"
           onClick={onExit}
-          className="focus-ring ml-auto rounded-lg px-2.5 py-1.5 text-[11px] text-slate-400 transition hover:text-white"
+          className="focus-ring ml-auto rounded-lg px-2.5 py-1.5 text-[0.6875rem] text-slate-400 transition hover:text-white"
         >
           Surrender
         </button>
@@ -254,34 +254,34 @@ export function BattleScreen({ onExit, onPractice }) {
 
       {/* objective ticker */}
       <div className="panel flex items-center gap-3 px-4 py-2.5">
-        <span className="shrink-0 rounded-md bg-grape-500/20 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-grape-300">
+        <span className="shrink-0 rounded-md bg-grape-500/20 px-2 py-1 text-[0.625rem] font-bold uppercase tracking-wider text-grape-300">
           Objective {Math.min(playerDone.length + 1, activeTasks.length)}/{activeTasks.length}
         </span>
         <p className="min-w-0 flex-1 truncate text-sm text-slate-100">
           {currentTask ? describeTask(currentTask, state.nodes) : 'All objectives cleared!'}
         </p>
-        <span className="hidden shrink-0 text-[11px] text-slate-500 sm:block">
-          mistakes −{playerMistakes * Math.abs(SCORE.mistake)} pts
+        <span className="hidden shrink-0 text-[0.6875rem] text-slate-500 sm:block">
+          mistakes โ’{playerMistakes * Math.abs(SCORE.mistake)} pts
         </span>
       </div>
 
       <div className="flex min-h-0 flex-1 flex-col gap-3 lg:flex-row">
-        <div className="flex min-h-[520px] min-w-0 flex-1 flex-col lg:min-h-0">
+        <div className="flex min-h-[32.5rem] min-w-0 flex-1 flex-col lg:min-h-0">
           <Explorer
             explorer={explorer}
             onOpenFile={(node) =>
               toast({
                 type: 'info',
                 title: `Opening ${node.name}`,
-                body: 'Keep the clock in mind — the rival does not wait.',
+                body: 'Keep the clock in mind โ€” the rival does not wait.',
               })
             }
           />
         </div>
 
-        <aside className="flex w-full shrink-0 flex-col gap-3 lg:w-[300px] lg:overflow-hidden">
+        <aside className="flex w-full shrink-0 flex-col gap-3 lg:w-[18.75rem] lg:overflow-hidden">
           <div className="panel flex min-h-0 flex-1 flex-col p-3">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
+            <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-slate-500">
               Objective board
             </p>
             <div className="mt-2 flex min-h-0 flex-1 flex-col gap-1.5 overflow-y-auto pr-1 scrollbar-slim">
@@ -298,11 +298,11 @@ export function BattleScreen({ onExit, onPractice }) {
                     }`}
                   >
                     <span
-                      className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[9px] font-bold ${
+                      className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[0.5625rem] font-bold ${
                         youDone ? 'bg-neon-500/80 text-ink-950' : 'bg-white/10 text-slate-400'
                       }`}
                     >
-                      {youDone ? '✓' : ''}
+                      {youDone ? 'โ“' : ''}
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className={`block leading-snug ${youDone ? 'text-slate-400 line-through' : 'text-slate-200'}`}>
@@ -310,12 +310,12 @@ export function BattleScreen({ onExit, onPractice }) {
                       </span>
                     </span>
                     <span
-                      className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[9px] font-bold ${
+                      className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[0.5625rem] font-bold ${
                         rivalDone ? 'bg-rose-500/80 text-white' : 'bg-white/10 text-slate-500'
                       }`}
                       title={rivalDone ? 'Archivist finished it' : 'Archivist has not finished it'}
                     >
-                      {rivalDone ? '✓' : ''}
+                      {rivalDone ? 'โ“' : ''}
                     </span>
                   </div>
                 )
@@ -324,7 +324,7 @@ export function BattleScreen({ onExit, onPractice }) {
           </div>
 
           <div className="panel max-h-56 overflow-y-auto p-3 scrollbar-slim">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
+            <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-slate-500">
               Rival activity
             </p>
             <ul className="mt-2 flex flex-col gap-1.5">
@@ -332,14 +332,14 @@ export function BattleScreen({ onExit, onPractice }) {
                 feed.map((f) => (
                   <li
                     key={f.id}
-                    className="flex items-start gap-2 text-[11px] leading-snug text-slate-400 animate-float-in"
+                    className="flex items-start gap-2 text-[0.6875rem] leading-snug text-slate-400 animate-float-in"
                   >
                     <span className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${f.good ? 'bg-rose-400' : 'bg-slate-600'}`} />
                     {f.text}
                   </li>
                 ))
               ) : (
-                <li className="text-[11px] text-slate-600">Archivist is warming up…</li>
+                <li className="text-[0.6875rem] text-slate-600">Archivist is warming upโ€ฆ</li>
               )}
             </ul>
           </div>
@@ -420,24 +420,24 @@ function ResultCard({
             {win
               ? 'Clean work. You organised those files faster and more accurately than Archivist.'
               : draw
-                ? 'Same score — the desk is still a mess. Go again?'
+                ? 'Same score โ€” the desk is still a mess. Go again?'
                 : 'Archivist got the job done first. Review the board below and try again.'}
           </p>
           <div className="mt-2 flex items-center gap-6">
             <div className="text-center">
               <p className="text-3xl font-black text-white">{playerScore}</p>
-              <p className="text-[10px] uppercase tracking-wider text-slate-500">You</p>
+              <p className="text-[0.625rem] uppercase tracking-wider text-slate-500">You</p>
             </div>
-            <span className="text-xl text-slate-600">—</span>
+            <span className="text-xl text-slate-600">โ€”</span>
             <div className="text-center">
               <p className="text-3xl font-black text-white">{aiScore}</p>
-              <p className="text-[10px] uppercase tracking-wider text-slate-500">Archivist</p>
+              <p className="text-[0.625rem] uppercase tracking-wider text-slate-500">Archivist</p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/5 px-6 py-4">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
+          <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-slate-500">
             Objectives
           </p>
           <div className="mt-2 flex flex-col gap-1">
@@ -445,7 +445,7 @@ function ResultCard({
               const you = playerDone.includes(t.id)
               const rival = aiDone.includes(t.id)
               return (
-                <div key={t.id} className="flex items-center gap-2 text-[11px]">
+                <div key={t.id} className="flex items-center gap-2 text-[0.6875rem]">
                   <span className={`h-2 w-2 rounded-full ${you ? 'bg-neon-400' : 'bg-white/15'}`} />
                   <span className={`flex-1 truncate ${you || rival ? 'text-slate-300' : 'text-slate-600'}`}>
                     {describeTask(t, nodes)}
@@ -457,8 +457,8 @@ function ResultCard({
               )
             })}
           </div>
-          <p className="mt-3 text-[11px] text-slate-500">
-            Slips — you: {playerMistakes} · Archivist: {aiMistakes}
+          <p className="mt-3 text-[0.6875rem] text-slate-500">
+            Slips โ€” you: {playerMistakes} ยท Archivist: {aiMistakes}
           </p>
 
           <div className="mt-4 flex flex-col gap-2">

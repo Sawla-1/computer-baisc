@@ -113,6 +113,15 @@
 }
 
 @layer base {
+  /* Everything in the UI is sized in rem, so this one value scales the
+     whole trainer — text, buttons, icons and spacing together.
+     18px is the classroom default; the A- / A+ control changes it live. */
+  :root {
+    --ui-scale: 18px;
+  }
+  html {
+    font-size: var(--ui-scale);
+  }
   html,
   body,
   #root {
