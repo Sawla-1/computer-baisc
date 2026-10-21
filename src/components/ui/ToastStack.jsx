@@ -18,13 +18,13 @@ function Toast({ toast, onDismiss }) {
       className={`pointer-events-auto flex w-80 items-start gap-3 rounded-xl border border-white/5 ${tone.bg} p-3 shadow-2xl shadow-black/40 ring-1 ${tone.ring} animate-slide-up backdrop-blur-md`}
     >
       <span
-        className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black/30 text-xs font-bold ${tone.text}`}
+        className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black/30 text-sm font-bold ${tone.text}`}
       >
         {tone.icon}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-semibold text-white">{toast.title}</p>
-        {toast.body ? <p className="mt-0.5 text-xs leading-relaxed text-slate-300">{toast.body}</p> : null}
+        <p className="text-base font-semibold text-white">{toast.title}</p>
+        {toast.body ? <p className="mt-0.5 text-sm leading-relaxed text-slate-300">{toast.body}</p> : null}
       </div>
       <button
         onClick={() => onDismiss(toast.id)}

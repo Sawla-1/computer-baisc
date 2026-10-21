@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Icon } from './Icon.jsx'
 import { Tip } from './Tooltip.jsx'
 import { SORTS } from '../../game/fs.js'
@@ -138,7 +138,7 @@ export function Toolbar({ state, on, beaconTool }) {
             <button
               type="button"
               onClick={() => setSortOpen((v) => !v)}
-              className={`focus-ring flex h-9 items-center gap-1.5 rounded-lg border px-2.5 text-xs transition ${
+              className={`focus-ring flex h-9 items-center gap-1.5 rounded-lg border px-2.5 text-sm transition ${
                 beaconTool === 'sort'
                   ? 'animate-ping-ring border-neon-400/70 bg-neon-500/20 text-neon-300'
                   : 'border-white/10 bg-white/5 text-slate-200 hover:bg-white/10'
@@ -193,7 +193,7 @@ export function Toolbar({ state, on, beaconTool }) {
           <input
             value={searchQuery}
             onChange={(e) => on.search(e.target.value)}
-            placeholder="Search all filesโ€ฆ"
+            placeholder="Search all files…"
             className="w-full bg-transparent text-sm text-white placeholder:text-slate-500 focus:outline-none"
           />
           {searchQuery ? (

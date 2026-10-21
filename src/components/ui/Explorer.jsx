@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Icon } from './Icon.jsx'
 import { FileGlyph, FolderGlyph } from './FileGlyph.jsx'
 import { ContextMenu } from './ContextMenu.jsx'
@@ -250,7 +250,7 @@ export function Explorer({ explorer, beacon, onOpenFile, onHintBeacon }) {
 
         <main className="flex min-w-0 flex-1 flex-col">
           {/* breadcrumbs */}
-          <div className="flex flex-wrap items-center gap-1 border-b border-white/5 px-4 py-2 text-xs text-slate-400">
+          <div className="flex flex-wrap items-center gap-1 border-b border-white/5 px-4 py-2 text-sm text-slate-400">
             {crumbs.map((c, i) => (
               <span key={c.id} className="flex items-center gap-1">
                 {i > 0 ? <Icon name="chevron-right" className="h-3 w-3 opacity-40" /> : null}
@@ -264,7 +264,7 @@ export function Explorer({ explorer, beacon, onOpenFile, onHintBeacon }) {
               </span>
             ))}
             {searchResults.length ? (
-              <span className="ml-3 rounded-full bg-grape-500/20 px-2 py-0.5 text-[0.625rem] font-semibold text-grape-300">
+              <span className="ml-3 rounded-full bg-grape-500/20 px-2 py-0.5 text-sm font-semibold text-grape-300">
                 {searchResults.length} search result{searchResults.length === 1 ? '' : 's'}
               </span>
             ) : null}
@@ -367,8 +367,8 @@ export function Explorer({ explorer, beacon, onOpenFile, onHintBeacon }) {
                   <div className="col-span-full flex flex-col items-center gap-2 py-14 text-center text-sm text-slate-500">
                     <Icon name="folder" className="h-10 w-10 opacity-40" />
                     <p>This folder is empty.</p>
-                    <p className="text-xs text-slate-600">
-                      Use โ€New folderโ€ or โ€New fileโ€ to add something.
+                    <p className="text-sm text-slate-600">
+                      Use “New folder” or “New file” to add something.
                     </p>
                   </div>
                 ) : null}
@@ -402,7 +402,7 @@ function CreateTile({ kind, value, setValue, onCommit, onCancel }) {
   return (
     <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-neon-400/60 bg-neon-500/5 p-3 animate-pop">
       <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/5 text-2xl">
-        {kind === 'folder' ? '๐“' : '๐“'}
+        {kind === 'folder' ? '📁' : '📄'}
       </div>
       <InlineInput
         value={value}
@@ -411,7 +411,7 @@ function CreateTile({ kind, value, setValue, onCommit, onCancel }) {
         onCancel={onCancel}
         className="text-center"
       />
-      <p className="text-[0.625rem] text-slate-500">
+      <p className="text-sm text-slate-500">
         {kind === 'folder' ? 'Enter a name for the folder' : 'Enter a name like notes.txt'}
       </p>
     </div>
@@ -465,16 +465,16 @@ function ItemCard({
           onCancel={onRenameCancel}
         />
       ) : (
-        <span className="w-full truncate text-[0.8125rem] font-medium text-slate-100" title={node.name}>
+        <span className="w-full truncate text-base font-medium text-slate-100" title={node.name}>
           {node.name}
         </span>
       )}
-      <span className="text-[0.625rem] text-slate-500">
+      <span className="text-sm text-slate-500">
         {node.type === 'folder'
           ? `${node.children.length} item${node.children.length === 1 ? '' : 's'}`
-          : `${meta.label} ยท ${formatSize(node.size)}`}
+          : `${meta.label} · ${formatSize(node.size)}`}
       </span>
-      <span className="absolute right-2 top-2 text-[0.625rem] text-slate-600 opacity-0 transition group-hover:opacity-100">
+      <span className="absolute right-2 top-2 text-sm text-slate-600 opacity-0 transition group-hover:opacity-100">
         {formatDate(node.modified)}
       </span>
     </div>
@@ -526,14 +526,14 @@ function ItemRow({
             onCancel={onRenameCancel}
           />
         ) : (
-          <p className="truncate text-sm text-slate-100">{node.name}</p>
+          <p className="truncate text-base text-slate-100">{node.name}</p>
         )}
       </div>
-      <span className="hidden w-28 truncate text-xs text-slate-500 sm:block">{meta.label}</span>
-      <span className="hidden w-20 text-right text-xs text-slate-500 sm:block">
-        {node.type === 'file' ? formatSize(node.size) : 'โ€”'}
+      <span className="hidden w-28 truncate text-sm text-slate-500 sm:block">{meta.label}</span>
+      <span className="hidden w-20 text-right text-sm text-slate-500 sm:block">
+        {node.type === 'file' ? formatSize(node.size) : '—'}
       </span>
-      <span className="hidden w-28 text-right text-xs text-slate-500 md:block">
+      <span className="hidden w-28 text-right text-sm text-slate-500 md:block">
         {formatDate(node.modified)}
       </span>
     </div>
@@ -546,7 +546,7 @@ function SearchResults({ results, nodes, onPick }) {
       <div className="flex flex-col items-center gap-2 py-16 text-center text-sm text-slate-500">
         <Icon name="search" className="h-9 w-9 opacity-40" />
         <p>No files match that search.</p>
-        <p className="text-xs text-slate-600">Try a shorter word โ€” search looks at file names.</p>
+        <p className="text-sm text-slate-600">Try a shorter word — search looks at file names.</p>
       </div>
     )
   }
@@ -564,8 +564,8 @@ function SearchResults({ results, nodes, onPick }) {
           ) : (
             <FileGlyph kind={kindOf(r)} ext={extOf(r.name)} className="h-7 w-7" />
           )}
-          <span className="flex-1 truncate text-sm text-slate-100">{r.name}</span>
-          <span className="hidden truncate text-xs text-slate-500 sm:block">
+          <span className="flex-1 truncate text-base text-slate-100">{r.name}</span>
+          <span className="hidden truncate text-sm text-slate-500 sm:block">
             {pathString(nodes, r.folderId)}
           </span>
           <Icon name="chevron-right" className="h-4 w-4 text-slate-600" />

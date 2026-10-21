@@ -1,4 +1,4 @@
-﻿import { Icon } from './ui/Icon.jsx'
+import { Icon } from './ui/Icon.jsx'
 
 const SKILLS = [
   ['folder', 'Folders & paths'],
@@ -16,9 +16,9 @@ export function Home({ onPractice, onBattle }) {
     <div className="flex h-full min-h-0 flex-col items-center overflow-y-auto p-6 scrollbar-slim">
       <div className="w-full max-w-4xl pt-6">
         <div className="text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-neon-300">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-semibold uppercase tracking-[0.18em] text-neon-300">
             <Icon name="book" className="h-3.5 w-3.5" />
-            Computer basics ยท File management
+            Computer basics · File management
           </span>
           <h1 className="mt-5 text-5xl font-black tracking-tight text-white sm:text-6xl">
             File<span className="text-neon-400">Ops</span>
@@ -51,7 +51,7 @@ export function Home({ onPractice, onBattle }) {
             tagline="Race Archivist, the AI rival"
             points={[
               'Eight objectives, 2:30 on the clock',
-              'Wrong file, wrong points โ€” read the objective',
+              'Wrong file, wrong points — read the objective',
               'Dead heat means sudden death',
             ]}
             cta="Enter the battle"
@@ -59,21 +59,21 @@ export function Home({ onPractice, onBattle }) {
         </div>
 
         <div className="panel mt-6 p-5">
-          <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-slate-500">
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">
             What you will be able to do afterwards
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             {SKILLS.map(([icon, label]) => (
               <span
                 key={label}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-300"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-300"
               >
                 <Icon name={icon} className="h-3.5 w-3.5 text-neon-400" />
                 {label}
               </span>
             ))}
           </div>
-          <p className="mt-4 text-xs leading-relaxed text-slate-500">
+          <p className="mt-4 text-sm leading-relaxed text-slate-500">
             Everything runs in a safe virtual computer: nothing on your own files is touched.
           </p>
         </div>
@@ -116,7 +116,7 @@ function ModeCard({ onClick, tone, icon, title, tagline, points, cta }) {
       <p className={`relative mt-1 text-sm font-medium ${styles.text}`}>{tagline}</p>
       <ul className="relative mt-3 flex flex-col gap-1.5">
         {points.map((p) => (
-          <li key={p} className="flex items-start gap-2 text-xs leading-relaxed text-slate-400">
+          <li key={p} className="flex items-start gap-2 text-sm leading-relaxed text-slate-400">
             <Icon name="check" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-600" />
             {p}
           </li>

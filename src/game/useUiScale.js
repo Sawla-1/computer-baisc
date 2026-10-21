@@ -5,13 +5,27 @@ import { useEffect, useState } from 'react'
  * text, buttons, icons and spacing together. The teacher can bump it live
  * for a projector or shrink it for a small laptop screen.
  */
-export const SCALE_STEPS = [16, 18, 20, 22]
+export const SCALE_STEPS = [16, 18, 20, 22, 24]
+export const STANDARD_SCALE = 20
 const STORAGE_KEY = 'fileops:ui-scale'
+const STANDARD_KEY = 'fileops:ui-scale-standard'
 
 const readStored = () => {
-  if (typeof window === 'undefined') return 18
-  const saved = Number(window.localStorage.getItem(STORAGE_KEY))
-  return SCALE_STEPS.includes(saved) ? saved : 18
+  if (typeof window === 'undefined') return STANDARD_SCALE
+  let stored
+  try {
+    stored = Number(window.localStorage.getItem(STORAGE_KEY))
+    // The standard changed since this browser last visited: the old default is
+    // stale, so move to the new one. Later choices are kept as they are.
+    if (window.localStorage.getItem(STANDARD_KEY) !== String(STANDARD_SCALE)) {
+      window.localStorage.setItem(STANDARD_KEY, String(STANDARD_SCALE))
+      window.localStorage.setItem(STORAGE_KEY, String(STANDARD_SCALE))
+      return STANDARD_SCALE
+    }
+  } catch {
+    /* private mode: fall through to the standard */
+  }
+  return SCALE_STEPS.includes(stored) ? stored : STANDARD_SCALE
 }
 
 export function useUiScale() {
@@ -21,6 +35,7 @@ export function useUiScale() {
     document.documentElement.style.fontSize = `${scale}px`
     try {
       window.localStorage.setItem(STORAGE_KEY, String(scale))
+      window.localStorage.setItem(STANDARD_KEY, String(STANDARD_SCALE))
     } catch {
       /* private mode: keep the in-memory value only */
     }
