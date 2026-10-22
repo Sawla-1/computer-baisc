@@ -3,8 +3,6 @@ import { Icon } from './Icon.jsx'
 
 export function ContextMenu({ x, y, items, onClose }) {
   const ref = useRef(null)
-  const itemsRef = useRef(items)
-  itemsRef.current = items
   const [pos, setPos] = useState({ left: x, top: y })
 
   useLayoutEffect(() => {

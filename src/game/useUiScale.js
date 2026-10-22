@@ -32,7 +32,7 @@ export function useUiScale() {
   const [scale, setScale] = useState(readStored)
 
   useEffect(() => {
-    document.documentElement.style.fontSize = `${scale}px`
+    document.documentElement.style.setProperty('--ui-scale', `${scale}px`)
     try {
       window.localStorage.setItem(STORAGE_KEY, String(scale))
       window.localStorage.setItem(STANDARD_KEY, String(STANDARD_SCALE))
@@ -44,7 +44,6 @@ export function useUiScale() {
   const index = SCALE_STEPS.indexOf(scale)
   return {
     scale,
-    setScale,
     smaller: () => setScale(SCALE_STEPS[Math.max(0, index - 1)]),
     bigger: () => setScale(SCALE_STEPS[Math.min(SCALE_STEPS.length - 1, index + 1)]),
     canSmaller: index > 0,

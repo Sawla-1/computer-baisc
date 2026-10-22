@@ -5,7 +5,6 @@ import {
   emptyTrash,
   moveNode,
   renameNode,
-  TRASH_ID,
 } from './fs.js'
 import { TASK } from './tasks.js'
 
@@ -196,5 +195,3 @@ export const aiAct = (nodes, task, rng) => {
   /* fumble without a concrete wrong action: just waste the turn */
   return { nodes, solved: false, mistake: true, message: 'Archivist hesitated.' }
 }
-
-export const aiTrashCount = (nodes) => nodes[TRASH_ID]?.children.length || 0

@@ -393,7 +393,6 @@ function ResultCard({
   onPractice,
 }) {
   const win = result === 'win'
-  const draw = result === 'draw'
   return (
     <div className="fixed inset-0 z-[65] flex items-center justify-center bg-ink-950/80 p-4 backdrop-blur-sm">
       <div className="w-full max-w-lg animate-pop overflow-hidden rounded-2xl border border-white/10 bg-ink-900/95 shadow-2xl">
@@ -401,27 +400,23 @@ function ResultCard({
           className={`flex flex-col items-center gap-3 px-6 py-7 text-center ${
             win
               ? 'bg-gradient-to-b from-neon-500/25 to-transparent'
-              : draw
-                ? 'bg-gradient-to-b from-mango-400/20 to-transparent'
-                : 'bg-gradient-to-b from-rose-500/25 to-transparent'
+              : 'bg-gradient-to-b from-rose-500/25 to-transparent'
           }`}
         >
           <span
             className={`flex h-16 w-16 items-center justify-center rounded-2xl ${
-              win ? 'bg-neon-500/25 text-neon-300' : draw ? 'bg-mango-400/20 text-mango-400' : 'bg-rose-500/25 text-rose-300'
+              win ? 'bg-neon-500/25 text-neon-300' : 'bg-rose-500/25 text-rose-300'
             }`}
           >
-            <Icon name={win ? 'trophy' : draw ? 'flag' : 'skull'} className="h-8 w-8" />
+            <Icon name={win ? 'trophy' : 'skull'} className="h-8 w-8" />
           </span>
           <h2 className="text-3xl font-black tracking-tight text-white">
-            {win ? 'You win!' : draw ? 'Draw' : 'You lose'}
+            {win ? 'You win!' : 'You lose'}
           </h2>
           <p className="max-w-sm text-sm text-slate-400">
             {win
               ? 'Clean work. You organised those files faster and more accurately than Archivist.'
-              : draw
-                ? 'Same score — the desk is still a mess. Go again?'
-                : 'Archivist got the job done first. Review the board below and try again.'}
+              : 'Archivist got the job done first. Review the board below and try again.'}
           </p>
           <div className="mt-2 flex items-center gap-6">
             <div className="text-center">

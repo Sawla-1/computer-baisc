@@ -43,12 +43,11 @@ function InlineInput({ value, onChange, onCommit, onCancel, className = '' }) {
   )
 }
 
-export function Explorer({ explorer, beacon, onOpenFile, onHintBeacon }) {
+export function Explorer({ explorer, beacon, onOpenFile }) {
   const { state, actions, visible, selection, selectedNodes, inTrash } = explorer
   const [menu, setMenu] = useState(null)
   const [renameValue, setRenameValue] = useState('')
   const [createValue, setCreateValue] = useState('')
-  const gridRef = useRef(null)
 
   const nodes = state.nodes
   const current = nodes[state.currentFolderId]
@@ -271,7 +270,7 @@ export function Explorer({ explorer, beacon, onOpenFile, onHintBeacon }) {
           </div>
 
           {/* content */}
-          <div ref={gridRef} className="min-h-0 flex-1 overflow-y-auto p-4 scrollbar-slim">
+          <div className="min-h-0 flex-1 overflow-y-auto p-4 scrollbar-slim">
             {state.search.query.trim() ? (
               <SearchResults
                 results={searchResults}
@@ -332,7 +331,6 @@ export function Explorer({ explorer, beacon, onOpenFile, onHintBeacon }) {
                         if (id) onDropItem(id, node.id)
                       }}
                       beacon={beaconNodeId === node.id}
-                      onHintBeacon={onHintBeacon}
                     />
                   ) : (
                     <ItemRow
@@ -433,7 +431,6 @@ function ItemCard({
   onDragStart,
   onDrop,
   beacon,
-  onHintBeacon,
 }) {
   const meta = kindMeta(node)
   return (
@@ -445,7 +442,6 @@ function ItemCard({
       onClick={onClick}
       onDoubleClick={onDoubleClick}
       onContextMenu={onContextMenu}
-      onMouseEnter={onHintBeacon}
       className={`group relative flex cursor-pointer select-none flex-col items-center gap-2 rounded-xl border p-3 text-center transition ${
         selected
           ? 'border-neon-400/70 bg-neon-500/15 ring-1 ring-neon-400/40'
@@ -455,7 +451,7 @@ function ItemCard({
       {node.type === 'folder' ? (
         <FolderGlyph className="h-11 w-11" />
       ) : (
-        <FileGlyph kind={meta === undefined ? 'file' : kindOf(node)} ext={node.ext} className="h-11 w-11" />
+        <FileGlyph kind={kindOf(node)} ext={node.ext} className="h-11 w-11" />
       )}
       {renaming ? (
         <InlineInput

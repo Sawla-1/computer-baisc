@@ -59,7 +59,6 @@ export function Toolbar({ state, on, beaconTool }) {
           label="New file"
           hint="creates an empty document"
           onClick={on.newFile}
-          beacon={beaconTool === 'new-file'}
         />
         <span className="mx-1 h-6 w-px bg-white/10" />
         <ToolButton
@@ -76,7 +75,6 @@ export function Toolbar({ state, on, beaconTool }) {
           hint="Ctrl+X"
           onClick={on.cut}
           disabled={!selectionCount}
-          beacon={beaconTool === 'cut'}
         />
         <ToolButton
           icon="copy"
@@ -111,7 +109,6 @@ export function Toolbar({ state, on, beaconTool }) {
               hint="back to its folder"
               onClick={on.restore}
               disabled={!selectionCount}
-              beacon={beaconTool === 'restore'}
             />
             <ToolButton
               icon="trash"

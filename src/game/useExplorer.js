@@ -1,10 +1,11 @@
-import { useCallback, useMemo, useReducer, useRef } from 'react'
+import { useCallback, useMemo, useReducer } from 'react'
 import {
   ROOT_ID,
   TRASH_ID,
   copyNode,
   createNode,
   deleteToTrash,
+  descendants,
   emptyTrash,
   moveNode,
   renameNode,
@@ -122,9 +123,7 @@ function reducer(state, action) {
           body: 'A name is required to create a new item.',
         }))
       }
-      const target = state.createMode
-        ? state.currentFolderId
-        : state.currentFolderId
+      const target = state.currentFolderId
       const res = createNode(state.nodes, {
         name: trimmed,
         type: kind === 'folder' ? 'folder' : 'file',
@@ -148,7 +147,6 @@ function reducer(state, action) {
             createMode: null,
             selection: [res.node.id],
             anchorId: res.node.id,
-            flags: state.flags,
           },
           { kind: 'create', ids: [res.node.id], nodeType: kind },
         ),
@@ -485,11 +483,7 @@ function restoreSafePurge(nodes, id) {
   const node = nodes[id]
   if (!node) return { ok: false, error: 'That item no longer exists.' }
   const next = { ...nodes }
-  for (const d of Object.values(nodes)) {
-    if (d.parentId === id) {
-      delete next[d.id]
-    }
-  }
+  for (const d of descendants(nodes, id)) delete next[d.id]
   const trash = nodes[TRASH_ID]
   next[TRASH_ID] = {
     ...trash,
@@ -501,8 +495,6 @@ function restoreSafePurge(nodes, id) {
 
 export function useExplorer(seedNodes) {
   const [state, dispatch] = useReducer(reducer, seedNodes, initialState)
-  const stateRef = useRef(state)
-  stateRef.current = state
 
   const toast = useCallback((t) => dispatch({ type: 'toast', toast: t }), [])
 

@@ -1,4 +1,4 @@
-import { childrenOf, findByName, pathString } from './fs.js'
+import { childrenOf, findByName } from './fs.js'
 
 /**
  * Every objective in the game is expressed as a task with a `target` and a
@@ -167,45 +167,4 @@ export const missionFeedback = (evt, task, nodes) => {
   }
 }
 
-/** Where the task wants the player to be looking (used for hints and beacons). */export const taskFocus = (task) => {
-  const t = task.target
-  switch (task.type) {
-    case TASK.CREATE_FOLDER:
-    case TASK.CREATE_FILE:
-      return { folder: t.parentId, tool: 'new' }
-    case TASK.RENAME:
-      return { folder: nodes0(t.id), tool: 'rename' }
-    case TASK.MOVE:
-    case TASK.COPY:
-      return { folder: nodes0(t.id), tool: t.type === 'copy' ? 'copy' : 'move' }
-    case TASK.TRASH:
-    case TASK.PURGE:
-      return { folder: nodes0(t.id), tool: 'delete' }
-    case TASK.RESTORE:
-      return { folder: 'trash', tool: 'restore' }
-    case TASK.EMPTY_TRASH:
-      return { folder: 'trash', tool: 'empty-trash' }
-    case TASK.SORT:
-      return { folder: t.folderId, tool: 'sort' }
-    case TASK.SEARCH:
-      return { tool: 'search' }
-    case TASK.SELECT:
-      return { folder: nodes0(t.ids[0]), tool: 'select' }
-    case TASK.NAVIGATE:
-      return { folder: t.id, tool: 'open' }
-    default:
-      return {}
-  }
-}
 
-// helper kept separate so `taskFocus` stays pure-ish
-const nodes0 = (id) => id
-
-export const taskLocation = (task, nodes) => {
-  const focus = taskFocus(task)
-  const id = focus.folder
-  if (!id || id === 'trash') return focus
-  const node = nodes[id]
-  if (!node) return focus
-  return { ...focus, path: pathString(nodes, node.parentId || node.id) }
-}

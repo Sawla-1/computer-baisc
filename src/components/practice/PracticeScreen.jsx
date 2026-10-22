@@ -94,11 +94,8 @@ export function PracticeScreen({ onExit, onBattle }) {
   }, [activitySeq, phase, missionIndex])
 
   const nextHint = useCallback(() => {
-    setHintLevel((l) => {
-      const next = Math.min(3, l + 1)
-      setHintsUsed((h) => h + 1)
-      return next
-    })
+    setHintsUsed((h) => h + 1)
+    setHintLevel((l) => Math.min(3, l + 1))
   }, [])
 
   const goToMission = useCallback(

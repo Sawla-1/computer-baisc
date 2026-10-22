@@ -100,7 +100,7 @@ export const classifyMistake = (evt, tasks) => {
   )
   if (!relevant.length) return false
 
-  if (evt.kind === 'trash' || evt.kind === 'purge') {
+  if (evt.kind === 'trash') {
     const targets = relevant
       .filter((t) => t.type === TASK.TRASH || t.type === TASK.PURGE)
       .flatMap((t) => (t.target.id ? [t.target.id] : []))

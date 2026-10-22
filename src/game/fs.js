@@ -11,7 +11,7 @@
 export const ROOT_ID = 'root'
 export const TRASH_ID = 'trash'
 
-export const EXT_KIND = {
+const EXT_KIND = {
   txt: 'text',
   md: 'text',
   doc: 'doc',
@@ -40,7 +40,7 @@ export const EXT_KIND = {
   py: 'code',
 }
 
-export const KIND_META = {
+const KIND_META = {
   text: { label: 'Text', tone: 'text' },
   doc: { label: 'Document', tone: 'doc' },
   pdf: { label: 'PDF', tone: 'pdf' },
@@ -59,11 +59,6 @@ export const KIND_META = {
 export const extOf = (name = '') => {
   const i = name.lastIndexOf('.')
   return i > 0 ? name.slice(i + 1).toLowerCase() : ''
-}
-
-export const baseOf = (name = '') => {
-  const i = name.lastIndexOf('.')
-  return i > 0 ? name.slice(0, i) : name
 }
 
 export const kindOf = (node) =>
@@ -99,8 +94,6 @@ export const makeRng = (seed) => {
 /* ------------------------------------------------------------------ */
 /* reads                                                               */
 /* ------------------------------------------------------------------ */
-
-export const getNode = (nodes, id) => nodes[id]
 
 export const childrenOf = (nodes, id) => {
   const node = nodes[id]
@@ -256,7 +249,7 @@ export const renameNode = (nodes, id, newName) => {
   const trimmed = newName.trim()
   if (!trimmed) return { ok: false, error: 'A name is required.' }
   if (trimmed === node.name) {
-    return { ok: true, nodes, node, unchanged: true }
+    return { ok: true, nodes, unchanged: true }
   }
   if (hasName(nodes, node.parentId, trimmed, id)) {
     return {
@@ -270,7 +263,7 @@ export const renameNode = (nodes, id, newName) => {
     ext: node.type === 'file' ? extOf(trimmed) : node.ext,
     modified: Date.now(),
   })
-  return { ok: true, nodes: next, node: next[id] }
+  return { ok: true, nodes: next }
 }
 
 export const moveNode = (nodes, id, targetParentId) => {
@@ -286,7 +279,7 @@ export const moveNode = (nodes, id, targetParentId) => {
     }
   }
   if (node.parentId === targetParentId) {
-    return { ok: true, nodes, node, unchanged: true }
+    return { ok: true, nodes, unchanged: true }
   }
   if (hasName(nodes, targetParentId, node.name)) {
     return {
@@ -301,7 +294,7 @@ export const moveNode = (nodes, id, targetParentId) => {
     parentId: targetParentId,
     modified: Date.now(),
   })
-  return { ok: true, nodes: next, node: next[id] }
+  return { ok: true, nodes: next }
 }
 
 const copyBranch = (nodes, id, targetParentId, prefix = 'c') => {
@@ -319,10 +312,10 @@ const copyBranch = (nodes, id, targetParentId, prefix = 'c') => {
   next = attach(next, targetParentId, copyId)
   if (source.type === 'folder') {
     for (const cid of source.children) {
-      next = copyBranch(next, cid, copyId, prefix)
+      next = copyBranch(next, cid, copyId, prefix).nodes
     }
   }
-  return next
+  return { nodes: next, id: copyId }
 }
 
 export const copyNode = (nodes, id, targetParentId) => {
@@ -338,8 +331,8 @@ export const copyNode = (nodes, id, targetParentId) => {
       error: `"${node.name}" already exists in "${target.name}". Copying would overwrite it.`,
     }
   }
-  const next = copyBranch(nodes, id, targetParentId)
-  return { ok: true, nodes: next, node: next[Object.keys(next).find((k) => k.startsWith('c'))] }
+  const { nodes: next, id: copyId } = copyBranch(nodes, id, targetParentId)
+  return { ok: true, nodes: next, node: next[copyId] }
 }
 
 export const deleteToTrash = (nodes, id) => {
@@ -351,7 +344,7 @@ export const deleteToTrash = (nodes, id) => {
   let next = detach(nodes, node.parentId, id)
   next = withNode(next, { ...next[id], parentId: TRASH_ID, previousParent: node.parentId })
   next = attach(next, TRASH_ID, id)
-  return { ok: true, nodes: next, node: next[id] }
+  return { ok: true, nodes: next }
 }
 
 export const restoreFromTrash = (nodes, id) => {
@@ -378,7 +371,7 @@ export const restoreFromTrash = (nodes, id) => {
     previousParent: undefined,
     modified: Date.now(),
   })
-  return { ok: true, nodes: next, node: next[id] }
+  return { ok: true, nodes: next }
 }
 
 export const emptyTrash = (nodes) => {

@@ -46,6 +46,13 @@ const PATHS = {
       <path d="M10 11v6M14 11v6" />
     </>
   ),
+  trash: (
+    <>
+      <path d="M12 3v7" />
+      <path d="M9 7l3 3 3-3" />
+      <path d="M5 11h14l-1 9H6l-1-9Z" />
+    </>
+  ),
   restore: (
     <>
       <path d="M4 11h10a5 5 0 1 1 0 10h-3" />
@@ -91,7 +98,6 @@ const PATHS = {
       <path d="M12 17v-6M9.5 13.5 12 11l2.5 2.5" />
     </>
   ),
-  'arrow-left': <path d="M19 12H5M11 6l-6 6 6 6" />,
   'arrow-right': <path d="M5 12h14M13 6l6 6-6 6" />,
   check: <path d="m5 13 4 4L19 7" />,
   close: <path d="M6 6l12 12M18 6 6 18" />,
